@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2019 年 07 月 24 日 01:11
+-- 生成日期: 2019 年 07 月 24 日 15:25
 -- 服务器版本: 5.5.53
 -- PHP 版本: 5.4.45
 
@@ -77,7 +77,7 @@ INSERT INTO `products` (`id`, `name`, `desp`, `price`, `detail`, `imgs`, `status
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` varchar(20) NOT NULL,
   `name` varchar(20) DEFAULT NULL,
-  `menus` varchar(100) DEFAULT NULL,
+  `menus_json` varchar(100) DEFAULT NULL,
   `create_time` varchar(30) DEFAULT NULL,
   `auth_name` varchar(20) DEFAULT NULL,
   `auth_time` varchar(30) DEFAULT NULL,
@@ -88,8 +88,8 @@ CREATE TABLE IF NOT EXISTS `roles` (
 -- 转存表中的数据 `roles`
 --
 
-INSERT INTO `roles` (`id`, `name`, `menus`, `create_time`, `auth_name`, `auth_time`) VALUES
-('1', '经理', '"["/","/products","/category","/product","/user","/role"]"', '1547381117891', 'admin', '1547381117891');
+INSERT INTO `roles` (`id`, `name`, `menus_json`, `create_time`, `auth_name`, `auth_time`) VALUES
+('1', '经理', '["/","/products","/category","/product","/user","/role"]', '1547381117891', 'admin', '1547381117891');
 
 -- --------------------------------------------------------
 

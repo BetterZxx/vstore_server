@@ -7,7 +7,7 @@
 
      public void insertEmp(Employee employee);-->
     <select id="getUser" resultType="com.vstore.vstore_server.bean.User">
-        SELECT * FROM users WHERE id=#{_id}
+        SELECT * FROM users WHERE name=#{userName}
     </select>
 
 </mapper>
