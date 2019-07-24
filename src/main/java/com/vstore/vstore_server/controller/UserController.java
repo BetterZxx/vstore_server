@@ -25,9 +25,10 @@ public class UserController {
     @Autowired
     RoleMapper roleMapper;
     @RequestMapping("/login")
-    public Map<String,Object> Login(@RequestParam(value = "name", defaultValue = "admin") String userName,
-                                    @RequestParam(value = "name", defaultValue = "admin") String password)
+    public Map<String,Object> Login(@RequestParam(value = "username", defaultValue = "admin") String userName,
+                                    @RequestParam(value = "password", defaultValue = "admin") String password)
     {
+        System.out.println(userName+password);
         User user = userService.login(userName,password);
         Role role = roleService.getRole(user.getId());
         Map<String,Object> maps = new HashMap<>();
