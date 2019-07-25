@@ -6,8 +6,23 @@
     <!--    public Employee getEmpById(Integer id);
 
      public void insertEmp(Employee employee);-->
-    <select id="getUser" resultType="com.vstore.vstore_server.bean.User">
-        SELECT * FROM users WHERE name=#{userName}
+    <select id="getUserByName" resultType="com.vstore.vstore_server.bean.User">
+        SELECT * FROM users WHERE username=#{username}
     </select>
+    <select id="getUserList" resultType="com.vstore.vstore_server.bean.User">
+        SELECT * FROM users
+    </select>
+    <insert id="addUser" parameterType="com.vstore.vstore_server.bean.User">
+        INSERT INTO users SET id=#{id},phone=#{phone},email=#{email},username=#{username},password=#{password},role_id=#{role_id},create_time=#{createTime}
+    </insert>
+    <update id="updateUser" parameterType="com.vstore.vstore_server.bean.User">
+        UPDATE users SET username=#{username},role_id=#{roleId},phone=#{phone},email=#{email} WHERE id=#{id}
+    </update>
+    <select id="getUserById" parameterType="String" resultType="com.vstore.vstore_server.bean.User" >
+        SELECT * FROM users where id=#{id}
+    </select>
+    <delete id="deleteUserById">
+        DELETE FROM users WHERE id=#{id}
+    </delete>
 
 </mapper>

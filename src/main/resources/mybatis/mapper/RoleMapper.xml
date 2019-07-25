@@ -9,5 +9,13 @@
     <select id="getRole" resultType="com.vstore.vstore_server.bean.Role">
         SELECT * FROM roles WHERE id=#{_id}
     </select>
-
+    <insert id="addRole" >
+        INSERT INTO roles SET name=#{roleName},create_time=#{time},id=#{id}
+    </insert>
+    <select id="getRoleList" resultType="com.vstore.vstore_server.bean.Role">
+        SELECT * FROM roles
+    </select>
+    <update id="updateRole" parameterType="com.vstore.vstore_server.bean.Role">
+        UPDATE roles SET auth_time=#{authTime},menus_json=#{menusJson},auth_name=#{authName} WHERE id=#{id}
+    </update>
 </mapper>

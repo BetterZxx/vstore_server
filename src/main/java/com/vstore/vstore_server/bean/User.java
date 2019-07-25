@@ -2,11 +2,20 @@ package com.vstore.vstore_server.bean;
 
 public class User {
     private String id;
-    private  String name;
+    private  String username;
     private  String password;
     private  String roleId;
     private  String phone;
     private  String email;
+    private  String createTime;
+
+    public String getCreate_time() {
+        return createTime;
+    }
+
+    public void setCreate_time(String create_time) {
+        this.createTime = create_time;
+    }
 
     public String getId() {
         return id;
@@ -16,12 +25,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getPassword() {

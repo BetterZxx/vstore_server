@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2019 年 07 月 24 日 15:25
+-- 生成日期: 2019 年 07 月 25 日 19:56
 -- 服务器版本: 5.5.53
 -- PHP 版本: 5.4.45
 
@@ -89,7 +89,8 @@ CREATE TABLE IF NOT EXISTS `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `menus_json`, `create_time`, `auth_name`, `auth_time`) VALUES
-('1', '经理', '["/","/products","/category","/product","/user","/role"]', '1547381117891', 'admin', '1547381117891');
+('1533', '经理', '["/","/products","/category","/product","/user","/role"]', '1547381117891', 'zhangxiang', '1564055656000'),
+('1564055585754', '商品管理员', '["/products","/category","/product"]', '1564055585754', 'zhangxiang', '1564055668000');
 
 -- --------------------------------------------------------
 
@@ -99,11 +100,12 @@ INSERT INTO `roles` (`id`, `name`, `menus_json`, `create_time`, `auth_name`, `au
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` varchar(20) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `phone` varchar(11) DEFAULT NULL,
   `email` varchar(20) DEFAULT NULL,
   `role_id` varchar(20) DEFAULT NULL,
+  `create_time` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -111,8 +113,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- 转存表中的数据 `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `phone`, `email`, `role_id`) VALUES
-('1', 'admin', 'admin', '12345678999', 'admin@mail.com', '1');
+INSERT INTO `users` (`id`, `username`, `password`, `phone`, `email`, `role_id`, `create_time`) VALUES
+('1564055047815', 'zhangxiang', '123456', '18224361216', '1533911783@qq.com', '1533', '1564055047815'),
+('1564055707328', 'admin', 'admin', '1234567899', '111@qq.com', '1533', '1564055707328');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
