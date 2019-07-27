@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vstore.vstore_server.mapper.CategoryMapper">
+
+    <select id="getCateList" resultType="com.vstore.vstore_server.bean.Category" parameterType="String">
+        SELECT * FROM categorys WHERE parentId=#{parentId}
+    </select>
+    <insert id="addCate" parameterType="com.vstore.vstore_server.bean.Category">
+        INSERT INTO categorys SET id=#{id},name=#{name},parentId=#{parentId}
+/*        insert into categorys set id='30',name='口红',parentId='6'*/
+    </insert>
+
+    <update id="updateCateByName" parameterType="String">
+        UPDATE categorys SET name=#{name} WHERE id=#{id}
+        /*update categorys set name='眼影' where id='30'*/
+    </update>
+</mapper>

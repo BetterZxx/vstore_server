@@ -26,7 +26,6 @@ public class UserController {
     @RequestMapping(path="/login",method = RequestMethod.POST)
     public Map<String,Object> Login(@RequestBody Map<String,String> reqData)
     {
-
         String username = reqData.get("username");
         String password = reqData.get("password");
         int isLogin = userService.login(username,password);
