@@ -24,4 +24,8 @@ public class CategoryService {
     public int updateCateByName(Category category){
         return categoryMapper.updateCateByName(category);
     }
+
+    public Category getCateById(String categoryId){
+        return categoryMapper.getCateById(categoryId);
+    }
 }
