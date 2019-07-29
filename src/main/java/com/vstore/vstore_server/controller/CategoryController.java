@@ -70,4 +70,17 @@ public class CategoryController {
         return map;
     }
 
+    @RequestMapping(path = "/manage/category/info",method = RequestMethod.GET)
+    public Map<String,Object> getCateById(String categoryId){
+        Category category=categoryService.getCateById(categoryId);
+
+        Map map=new HashMap<>();
+        System.out.println(category);
+
+            map.put("status",0);
+            map.put("data",category);
+
+
+        return map;
+    }
 }
