@@ -3,11 +3,6 @@ package com.vstore.vstore_server.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author LinYin
- * @date 2019-07-28 14:51
- * 逆向工程自动生成的查询类
- */
 public class ProductExample {
     protected String orderByClause;
 

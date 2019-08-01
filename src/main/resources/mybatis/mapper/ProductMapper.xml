@@ -1,39 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!--
-  mybaits逆向工程自动生成
--->
-<mapper namespace="com.vstore.vstore_server.mapper.ProductMapper" >
-  <resultMap id="BaseResultMap" type="com.vstore.vstore_server.bean.Product" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="desp" property="desp" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="VARCHAR" />
-    <result column="detail" property="detail" jdbcType="VARCHAR" />
-    <result column="imgs" property="imgs" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="categoryId" property="categoryid" jdbcType="VARCHAR" />
-    <result column="pCategoryId" property="pcategoryid" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vstore.vstore_server.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.vstore.vstore_server.bean.Product">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="desp" jdbcType="VARCHAR" property="desp" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="categoryId" jdbcType="VARCHAR" property="categoryid" />
+    <result column="pCategoryId" jdbcType="VARCHAR" property="pcategoryid" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -44,25 +41,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -73,40 +70,40 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, name, desp, price, detail, imgs, status, categoryId, pCategoryId
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vstore.vstore_server.bean.ProductExample" >
+  <select id="selectByExample" parameterType="com.vstore.vstore_server.bean.ProductExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from products
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from products
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from products
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.vstore.vstore_server.bean.ProductExample" >
+  <delete id="deleteByExample" parameterType="com.vstore.vstore_server.bean.ProductExample">
     delete from products
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.vstore.vstore_server.bean.Product" >
+  <insert id="insert" parameterType="com.vstore.vstore_server.bean.Product">
     insert into products (id, name, desp, 
       price, detail, imgs, 
       status, categoryId, pCategoryId
@@ -116,109 +113,109 @@
       #{status,jdbcType=INTEGER}, #{categoryid,jdbcType=VARCHAR}, #{pcategoryid,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.vstore.vstore_server.bean.Product" >
+  <insert id="insertSelective" parameterType="com.vstore.vstore_server.bean.Product">
     insert into products
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
-      <if test="desp != null" >
+      <if test="desp != null">
         desp,
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         price,
       </if>
-      <if test="detail != null" >
+      <if test="detail != null">
         detail,
       </if>
-      <if test="imgs != null" >
+      <if test="imgs != null">
         imgs,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status,
       </if>
-      <if test="categoryid != null" >
+      <if test="categoryid != null">
         categoryId,
       </if>
-      <if test="pcategoryid != null" >
+      <if test="pcategoryid != null">
         pCategoryId,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="desp != null" >
+      <if test="desp != null">
         #{desp,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         #{price,jdbcType=VARCHAR},
       </if>
-      <if test="detail != null" >
+      <if test="detail != null">
         #{detail,jdbcType=VARCHAR},
       </if>
-      <if test="imgs != null" >
+      <if test="imgs != null">
         #{imgs,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="categoryid != null" >
+      <if test="categoryid != null">
         #{categoryid,jdbcType=VARCHAR},
       </if>
-      <if test="pcategoryid != null" >
+      <if test="pcategoryid != null">
         #{pcategoryid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.vstore.vstore_server.bean.ProductExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.vstore.vstore_server.bean.ProductExample" resultType="java.lang.Integer">
     select count(*) from products
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update products
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null" >
+      <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.desp != null" >
+      <if test="record.desp != null">
         desp = #{record.desp,jdbcType=VARCHAR},
       </if>
-      <if test="record.price != null" >
+      <if test="record.price != null">
         price = #{record.price,jdbcType=VARCHAR},
       </if>
-      <if test="record.detail != null" >
+      <if test="record.detail != null">
         detail = #{record.detail,jdbcType=VARCHAR},
       </if>
-      <if test="record.imgs != null" >
+      <if test="record.imgs != null">
         imgs = #{record.imgs,jdbcType=VARCHAR},
       </if>
-      <if test="record.status != null" >
+      <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.categoryid != null" >
+      <if test="record.categoryid != null">
         categoryId = #{record.categoryid,jdbcType=VARCHAR},
       </if>
-      <if test="record.pcategoryid != null" >
+      <if test="record.pcategoryid != null">
         pCategoryId = #{record.pcategoryid,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update products
     set id = #{record.id,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
@@ -229,41 +226,312 @@
       status = #{record.status,jdbcType=INTEGER},
       categoryId = #{record.categoryid,jdbcType=VARCHAR},
       pCategoryId = #{record.pcategoryid,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.vstore.vstore_server.bean.Product" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.vstore.vstore_server.bean.Product">
     update products
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="desp != null" >
+      <if test="desp != null">
         desp = #{desp,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         price = #{price,jdbcType=VARCHAR},
       </if>
-      <if test="detail != null" >
+      <if test="detail != null">
         detail = #{detail,jdbcType=VARCHAR},
       </if>
-      <if test="imgs != null" >
+      <if test="imgs != null">
         imgs = #{imgs,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="categoryid != null" >
+      <if test="categoryid != null">
         categoryId = #{categoryid,jdbcType=VARCHAR},
       </if>
-      <if test="pcategoryid != null" >
+      <if test="pcategoryid != null">
         pCategoryId = #{pcategoryid,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.vstore.vstore_server.bean.Product" >
+  <update id="updateByPrimaryKey" parameterType="com.vstore.vstore_server.bean.Product">
+    update products
+    set name = #{name,jdbcType=VARCHAR},
+      desp = #{desp,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      imgs = #{imgs,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      categoryId = #{categoryid,jdbcType=VARCHAR},
+      pCategoryId = #{pcategoryid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.vstore.vstore_server.bean.Product">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="desp" jdbcType="VARCHAR" property="desp" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="categoryId" jdbcType="VARCHAR" property="categoryid" />
+    <result column="pCategoryId" jdbcType="VARCHAR" property="pcategoryid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, desp, price, detail, imgs, status, categoryId, pCategoryId
+  </sql>
+  <select id="selectByExample" parameterType="com.vstore.vstore_server.bean.ProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from products
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from products
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vstore.vstore_server.bean.ProductExample">
+    delete from products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vstore.vstore_server.bean.Product">
+    insert into products (id, name, desp, 
+      price, detail, imgs, 
+      status, categoryId, pCategoryId
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{desp,jdbcType=VARCHAR}, 
+      #{price,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{categoryid,jdbcType=VARCHAR}, #{pcategoryid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vstore.vstore_server.bean.Product">
+    insert into products
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="desp != null">
+        desp,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="imgs != null">
+        imgs,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="categoryid != null">
+        categoryId,
+      </if>
+      <if test="pcategoryid != null">
+        pCategoryId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null">
+        #{desp,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null">
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="pcategoryid != null">
+        #{pcategoryid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vstore.vstore_server.bean.ProductExample" resultType="java.lang.Integer">
+    select count(*) from products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update products
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desp != null">
+        desp = #{record.desp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgs != null">
+        imgs = #{record.imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryid != null">
+        categoryId = #{record.categoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pcategoryid != null">
+        pCategoryId = #{record.pcategoryid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update products
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      desp = #{record.desp,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=VARCHAR},
+      imgs = #{record.imgs,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      categoryId = #{record.categoryid,jdbcType=VARCHAR},
+      pCategoryId = #{record.pcategoryid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vstore.vstore_server.bean.Product">
+    update products
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null">
+        desp = #{desp,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null">
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null">
+        categoryId = #{categoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="pcategoryid != null">
+        pCategoryId = #{pcategoryid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vstore.vstore_server.bean.Product">
     update products
     set name = #{name,jdbcType=VARCHAR},
       desp = #{desp,jdbcType=VARCHAR},
